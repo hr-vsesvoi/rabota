@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Работа и подработка — оператор колл-центра</title>
+  <meta name="description" content="Удалённая работа/подработка оператором колл-центра из любого города России: от 4 часов, от 125 ₽/час + 5% от кросс-продаж. Нужны стабильный интернет, гарнитура и компьютер." />
+
+  <style>
+    /* Пастельный фон (голубой/персик/лаванда) */
+    :root{
+      --bg1:#f3fbff;
+      --bg2:#fff6f2;
+      --bg3:#f7f3ff;
+
+      --card:#ffffff;
+      --text:#1b1b1f;
+      --muted:#5b5b66;
+      --line:rgba(27,27,31,.12);
+
+      --accent:#7c83ff;
+      --accent2:#34d399;
+
+      --shadow: 0 16px 40px rgba(27,27,31,.10);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1100px 760px at 12% 0%, rgba(124,131,255,.18), transparent 60%),
+        radial-gradient(1100px 760px at 88% 10%, rgba(52,211,153,.16), transparent 60%),
+        radial-gradient(900px 620px at 52% 35%, rgba(251,146,60,.10), transparent 62%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px; margin:0 auto; padding:0 18px}
+
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.86);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; gap:14px; align-items:center; justify-content:space-between;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center; text-decoration:none;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(124,131,255,.95), rgba(52,211,153,.90));
+      box-shadow: 0 10px 24px rgba(124,131,255,.14);
+      flex:0 0 auto;
+    }
+    .links{
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center; justify-content:flex-end;
+    }
+    .links a{
+      text-decoration:none; color:var(--muted);
+      padding:8px 10px; border-radius:12px;
+      border:1px solid transparent;
+    }
+    .links a:hover{border-color:var(--line); color:var(--text)}
+    @media (max-width: 900px){ .links{display:none} }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(27,27,31,.02);
+      text-decoration:none;
+      box-shadow: 0 10px 24px rgba(27,27,31,.08);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      cursor:pointer;
+      user-select:none;
+      color: var(--text);
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(124,131,255,.35);
+      background: rgba(124,131,255,.08);
+    }
+    .btn.primary{
+      border-color: rgba(124,131,255,.38);
+      background: linear-gradient(135deg, rgba(124,131,255,.12), rgba(52,211,153,.10));
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(124,131,255,.16), rgba(52,211,153,.14));
+    }
+
+    .hcard{
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero{padding:34px 0 18px}
+    .hero-grid{
+      display:grid; gap:18px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .hero-grid{grid-template-columns:1fr} }
+
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(28px, 3.6vw, 44px);
+      letter-spacing:-.5px;
+      line-height:1.08;
+    }
+    .sub{
+      color:var(--muted);
+      font-size: 16px;
+      margin:0 0 14px;
+      max-width: 64ch;
+    }
+
+    .bullets{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin:16px 0 18px;
+    }
+    @media (max-width:560px){ .bullets{grid-template-columns:1fr} }
+
+    .bullet{
+      border:1px solid var(--line);
+      background: rgba(27,27,31,.02);
+      border-radius: 14px;
+      padding:12px;
+    }
+    .bullet small{display:block; color:var(--muted); margin-top:4px}
+
+    section{padding:16px 0}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    @media (max-width:900px){.grid2{grid-template-columns:1fr}}
+    h2{margin:0 0 10px; font-size: 22px}
+    .muted{color:var(--muted)}
+    .list{margin:0; padding-left:18px; color:var(--muted)}
+
+    .steps{margin:0; padding:0; list-style:none; display:grid; gap:10px}
+    .step{
+      border:1px solid var(--line);
+      background: rgba(27,27,31,.02);
+      border-radius: 14px;
+      padding:14px;
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .num{
+      width:34px; height:34px; border-radius: 12px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(124,131,255,.10);
+      border:1px solid rgba(124,131,255,.22);
+      flex:0 0 auto;
+      font-weight:800;
+    }
+
+    .calc{display:grid; gap:12px}
+    .fields{display:grid; gap:10px; grid-template-columns:1fr 1fr}
+    @media (max-width:560px){.fields{grid-template-columns:1fr}}
+    label{display:grid; gap:6px; color:var(--muted); font-size:13px}
+    input, select{
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      outline:none;
+    }
+    input:focus, select:focus{border-color: rgba(124,131,255,.40)}
+    .result{
+      border:1px solid rgba(52,211,153,.25);
+      background: rgba(52,211,153,.10);
+      border-radius: 16px;
+      padding:14px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .result b{font-size:18px}
+    .fineprint{font-size:12px; color:var(--muted); margin:0}
+
+    details{
+      border:1px solid var(--line);
+      background: rgba(27,27,31,.02);
+      border-radius: 14px;
+      padding:12px 14px;
+    }
+    details summary{cursor:pointer; font-weight:650}
+    details p{color:var(--muted); margin:8px 0 0}
+
+    .kpi{
+      display:grid; gap:10px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 12px;
+    }
+    @media (max-width:900px){.kpi{grid-template-columns:1fr}}
+    .kpi .bullet{padding:14px}
+
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+
+    .hint{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size: 13px;
+      display:none;
+    }
+    code.k{
+      background: rgba(27,27,31,.04);
+      border:1px solid var(--line);
+      padding:2px 6px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="На главную">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Работа и подработка</span>
+      </a>
+
+      <div class="links" aria-label="Навигация">
+        <a href="#about">О вакансии</a>
+        <a href="#how">Как это работает</a>
+        <a href="#pay">Расчёт</a>
+        <a href="#req">Что нужно</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+
+      <a class="btn primary" href="#apply">Откликнуться</a>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hcard">
+          <h1>Оператор колл-центра удалённо <br/>из любого города России</h1>
+          <p class="sub">
+            График под вас: можно работать <b>от 4 часов в день</b>. Подойдёт студентам, мамам и всем,
+            кому нужен дополнительный доход без офиса.
+          </p>
+
+          <div class="bullets">
+            <div class="bullet"><b>От 125 ₽/час</b><small>фиксированная оплата за время</small></div>
+            <div class="bullet"><b>+ 5% от кросс-продаж</b><small>дополнительный доход сверху</small></div>
+            <div class="bullet"><b>От 4 часов</b><small>минимальная длительность смены</small></div>
+            <div class="bullet"><b>Любой город РФ</b><small>работа онлайн</small></div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#apply">👉 Написать в MAX и откликнуться</a>
+            <a class="btn" href="#pay">Посчитать доход</a>
+          </div>
+        </div>
+
+        <div class="hcard" id="req">
+          <h2>Что нужно для старта</h2>
+          <div class="bullet"><b>Стабильный интернет</b></div>
+          <div style="height:10px"></div>
+          <div class="bullet"><b>Компьютер или ноутбук</b><small>для работы в системе</small></div>
+          <div style="height:10px"></div>
+          <div class="bullet"><b>Гарнитура</b><small>наушники + микрофон</small></div>
+          <div style="height:10px"></div>
+          <div class="bullet"><b>Тихое место</b><small>чтобы комфортно разговаривать</small></div>
+
+          <p class="muted" style="margin-top:12px;">
+            Опыт не обязателен — научим и дадим понятные инструкции.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="grid2">
+        <div class="hcard">
+          <h2>Коротко о вакансии</h2>
+          <div class="kpi">
+            <div class="bullet"><b>Без опыта</b><small>обучение на старте</small></div>
+            <div class="bullet"><b>Гибко</b><small>смены от 4 часов</small></div>
+            <div class="bullet"><b>Оплата</b><small>125 ₽/час + 5% от кросс-продаж</small></div>
+          </div>
+          <p class="muted" style="margin-top:12px;">
+            Это подработка с понятными условиями: фикс за время + бонус, если получилось сделать кросс-продажу.
+          </p>
+        </div>
+
+        <div class="hcard">
+          <h2>Кому подойдёт</h2>
+          <ul class="list">
+            <li><b>Студентам</b> — легко совмещать с учёбой</li>
+            <li><b>Мамам/папам</b> — удобно подстроить под семью</li>
+            <li><b>Тем, кто ищет подработку</b> — вечером, утром или в выходные</li>
+            <li><b>Из любого города РФ</b> — работать можно удалённо</li>
+          </ul>
+          <p class="muted" style="margin-top:10px;">
+            Главное — стабильная связь и желание общаться с людьми.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="hcard">
+        <h2>Как это работает</h2>
+        <ul class="steps">
+          <li class="step">
+            <div class="num">1</div>
+            <div>
+              <b>Пишете в MAX</b>: “Хочу работать оператором колл-центра”
+              <div class="muted">Мы ответим и подскажем дальнейшие шаги.</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="num">2</div>
+            <div>
+              <b>Короткое знакомство</b> (10–15 минут)
+              <div class="muted">Уточним удобный график (смены от 4 часов) и расскажем про работу.</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="num">3</div>
+            <div>
+              <b>Обучение и старт</b>
+              <div class="muted">Дадим инструкции и скрипты. Первые шаги — вместе.</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="num">4</div>
+            <div>
+              <b>Работаете и получаете оплату</b>
+              <div class="muted">Оплата: <b>от 125 ₽/час + 5% от кросс-продаж</b>.</div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="cta-row" style="margin-top:14px;">
+          <a class="btn primary" href="#apply">🚀 Откликнуться в MAX</a>
+          <a class="btn" href="#faq">Посмотреть вопросы</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="pay">
+      <div class="grid2">
+        <div class="hcard">
+          <h2>Посчитаем доход</h2>
+          <p class="muted" style="margin-top:0;">
+            Калькулятор считает: <b>фикс за часы + 5% от кросс-продаж</b>.
+          </p>
+
+          <div class="calc">
+            <div class="fields">
+              <label>
+                Оплата (₽ за час)
+                <input id="rate" type="number" inputmode="numeric" min="0" step="5" value="125" />
+              </label>
+
+              <label>
+                Часов в неделю
+                <input id="hours" type="number" inputmode="numeric" min="0" step="1" value="20" />
+              </label>
+
+              <label>
+                Объём кросс-продаж в месяц (₽)
+                <input id="sales" type="number" inputmode="numeric" min="0" step="100" value="0" />
+              </label>
+
+              <label>
+                Недель в месяц
+                <select id="weeks">
+                  <option value="4" selected>4</option>
+                  <option value="4.3">4.3</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="result" aria-live="polite">
+              <div>
+                <div class="muted">Фикс (за часы):</div>
+                <b id="fixed">—</b>
+              </div>
+              <div>
+                <div class="muted">5% от кросс-продаж:</div>
+                <b id="percent">—</b>
+              </div>
+              <div>
+                <div class="muted">Итого в месяц:</div>
+                <b id="monthly">—</b>
+              </div>
+              <p class="fineprint">
+                * Расчёт ориентировочный. Точные условия уточняются при переписке.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hcard">
+          <h2>Важно знать</h2>
+          <ul class="list">
+            <li>Минимальная смена: <b>от 4 часов</b>.</li>
+            <li>Работа удалённая: <b>из любого города России</b>.</li>
+            <li>Оплата: <b>от 125 ₽/час + 5% от кросс-продаж</b>.</li>
+            <li>Для старта нужны: <b>стабильный интернет, гарнитура и компьютер</b>.</li>
+          </ul>
+
+          <div class="bullet" style="margin-top:12px;">
+            <b>Подойдёт, если вы</b>
+            <small>вежливо общаетесь • готовы учиться • можете работать 4+ часа</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <div class="hcard">
+        <h2>Откликнуться</h2>
+        <p class="muted" style="margin-top:0;">
+          Нажмите “Написать в MAX” — откроется чат в MAX (если вы вставили ссылку на профиль/чат ниже).
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" id="maxBtn" href="#">💬 Написать в MAX</a>
+          <a class="btn" id="copyPhone" href="#">Скопировать номер</a>
+        </div>
+
+        <p class="hint" id="hint"></p>
+
+        <div class="bullet" style="margin-top:12px;">
+          <b>Что написать?</b>
+          <small>“Хочу работать оператором колл-центра. Могу работать: [дни/время]. Город: [ваш город].”</small>
+        </div>
+
+        <div class="bullet" style="margin-top:10px;">
+          <b>Номер для поиска в MAX</b>
+          <small><code class="k">+7 995 057-41-13</code></small>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="hcard">
+        <h2>Вопросы</h2>
+
+        <details>
+          <summary>Нужен ли опыт?</summary>
+          <p>Нет. Обучаем на старте: дадим скрипты и инструкции, поможем начать.</p>
+        </details>
+
+        <div style="height:10px"></div>
+
+        <details>
+          <summary>Сколько минимум можно работать?</summary>
+          <p>Смены — <b>от 4 часов</b>. Дальше — как удобно вам.</p>
+        </details>
+
+        <div style="height:10px"></div>
+
+        <details>
+          <summary>Какая оплата?</summary>
+          <p><b>От 125 ₽/час + 5% от кросс-продаж</b>.</p>
+        </details>
+
+        <div style="height:10px"></div>
+
+        <details>
+          <summary>Из какого города можно?</summary>
+          <p>Из <b>любого города России</b>, если есть стабильный интернет, компьютер и гарнитура.</p>
+        </details>
+
+        <div style="height:10px"></div>
+
+        <details>
+          <summary>Что нужно из техники?</summary>
+          <p>Стабильный интернет, компьютер/ноутбук, гарнитура (наушники + микрофон), тихое место.</p>
+        </details>
+      </div>
+    </section>
+
+    <div style="height:24px"></div>
+  </main>
+
+  <script>
+    // ==========================================================
+    // MAX: ОТКРЫТЬ ЧАТ
+    // ----------------------------------------------------------
+    // Чтобы кнопка реально открывала чат в MAX, вставьте ССЫЛКУ
+    // на ваш профиль/чат, которую MAX генерирует через:
+    // Профиль → QR-код → Поделиться/Скопировать ссылку
+    // или в нужном чате: Название чата → "Пригласить по ссылке"
+    //
+    // Ссылка обычно выглядит так:
+    //   https://max.ru/u/<длинный_токен>
+    // или
+    //   https://max.ru/<username>
+    // ==========================================================
+
+    const PHONE_DISPLAY = "+7 995 057-41-13";
+    const PHONE_PLAIN = "+79950574113";
+
+    // ✅ ВСТАВЬТЕ СЮДА ВАШУ ССЫЛКУ ИЗ MAX (иначе нельзя гарантировать открытие чата)
+    const MAX_CHAT_URL = "https://max.ru/u/ВСТАВЬТЕ_ВАШУ_ССЫЛКУ_ИЗ_MAX";
+
+    // fallback (если MAX не установлен / пользователь на ПК)
+    const MAX_WEB_FALLBACK = "https://web.max.ru/";
+
+    const hint = document.getElementById("hint");
+    const maxBtn = document.getElementById("maxBtn");
+    const copyPhone = document.getElementById("copyPhone");
+
+    function showHint(text){
+      hint.style.display = "block";
+      hint.textContent = text;
+    }
+
+    function hasRealMaxLink(){
+      return MAX_CHAT_URL && !MAX_CHAT_URL.includes("ВСТАВЬТЕ_ВАШУ_ССЫЛКУ_ИЗ_MAX");
+    }
+
+    maxBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (hasRealMaxLink()) {
+        // Пытаемся открыть MAX по ссылке (на телефоне откроется приложение)
+        window.location.href = MAX_CHAT_URL;
+
+        // Если не открылось (ПК/нет приложения) — откроем web.max.ru
+        setTimeout(() => {
+          window.open(MAX_WEB_FALLBACK, "_blank", "noopener");
+          showHint("Если MAX не открылся: открыл web.max.ru. Там можно войти и написать нам.");
+        }, 1200);
+
+        return;
+      }
+
+      // Если ссылку не вставили — хотя бы откроем web.max.ru и подскажем номер
+      window.open(MAX_WEB_FALLBACK, "_blank", "noopener");
+      showHint("Открыл web.max.ru. В MAX найдите контакт по номеру " + PHONE_DISPLAY + " и напишите: “Хочу работать оператором колл-центра”.");
+    });
+
+    copyPhone.addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        await navigator.clipboard.writeText(PHONE_PLAIN);
+        showHint("Номер скопирован: " + PHONE_DISPLAY);
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = PHONE_PLAIN;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        showHint("Номер скопирован: " + PHONE_DISPLAY);
+      }
+    });
+
+    // ==========================================================
+    // КАЛЬКУЛЯТОР ДОХОДА
+    // ==========================================================
+    const fmt = (n) => {
+      if (!isFinite(n)) return "—";
+      return new Intl.NumberFormat("ru-RU").format(Math.round(n)) + " ₽";
+    };
+
+    function recalc(){
+      const rate  = Number(document.getElementById("rate").value  || 0);
+      const hours = Number(document.getElementById("hours").value || 0);
+      const weeks = Number(document.getElementById("weeks").value || 0);
+      const sales = Number(document.getElementById("sales").value || 0);
+
+      const fixed   = rate * hours * weeks;
+      const percent = sales * 0.05;
+      const monthly = fixed + percent;
+
+      document.getElementById("fixed").textContent   = fmt(fixed);
+      document.getElementById("percent").textContent = fmt(percent);
+      document.getElementById("monthly").textContent = fmt(monthly);
+    }
+
+    ["rate","hours","weeks","sales"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("input", recalc);
+      el.addEventListener("change", recalc);
+    });
+
+    recalc();
+  </script>
+</body>
+</html>
